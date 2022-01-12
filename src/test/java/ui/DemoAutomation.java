@@ -1,5 +1,7 @@
 package ui;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -34,8 +36,11 @@ public class DemoAutomation {
 		//click and show the free BongoBD youtube content
 		driver.get("https://www.youtube.com/channel/UC9nuJbEL-AMJLLqc2-ej8xQ");
 		
-		//Maximize the window
+		//Maximise the window
 		driver.manage().window().maximize();
+		
+		//implicit wait the content
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		//Search in youtube one of the contents in the BongoBD youtube channel
 		driver.findElement(By.xpath("/html/body/ytd-app/div/div/ytd-masthead/div[3]/div[2]/ytd-searchbox/form/div[1]/div[1]/input")).sendKeys("Zero Point |");
@@ -43,11 +48,14 @@ public class DemoAutomation {
 		//Click the search icon
 		driver.findElement(By.xpath("//*[@id=\"search-icon-legacy\"]")).click();
 		
-		//load the content
-		Thread.sleep(2000);
-		
 		//play the video
 		driver.findElement(By.xpath("/html/body/ytd-app/div/ytd-page-manager/ytd-search/div[1]/ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[2]/ytd-item-section-renderer/div[3]/ytd-video-renderer[1]/div[1]/div/div[1]/div")).click();
+		
+		//load the content
+		Thread.sleep(7000);
+		
+		//close the content
+		driver.close();
 		
 	}
 
